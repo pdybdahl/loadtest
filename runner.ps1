@@ -11,13 +11,13 @@ foreach ($file in $groupDataFiles) {
 	Write-Output $file.Name | Tee-Object -Append log.txt
 	
 	$StartTime = $(get-date)
-	Invoke-WebRequest -UseBasicParsing https://nginx-broker.skolelogin.127.0.0.1.nip.io/auth/realms/broker/aktoer-service/gruppe -ContentType "application/json" -Method POST -Body $groupData
+	Invoke-WebRequest -UseBasicParsing https://nginx-broker.skolelogin.127.0.0.1.nip.io/auth/realms/broker/aktoer-service/gruppe -ContentType "application/json;charset=UTF-8" -Method POST -Body $groupData
 	$elapsedTime = $(get-date) - $StartTime
 	$totalTime = "{0:HH:mm:ss.fff}" -f ([datetime]$elapsedTime.Ticks)
 	Write-Output "aktoer-service/gruppe: " $totalTime | Tee-Object -Append log.txt
 
 	$StartTime = $(get-date)
-	Invoke-WebRequest -UseBasicParsing https://nginx-unilogin.skolelogin.127.0.0.1.nip.io/auth/realms/idp/aktoerrestservice/gruppe -ContentType "application/json" -Method POST -Body $groupData
+	Invoke-WebRequest -UseBasicParsing https://nginx-unilogin.skolelogin.127.0.0.1.nip.io/auth/realms/idp/aktoerrestservice/gruppe -ContentType "application/json;charset=UTF-8" -Method POST -Body $groupData
 	$elapsedTime = $(get-date) - $StartTime
 	$totalTime = "{0:HH:mm:ss.fff}" -f ([datetime]$elapsedTime.Ticks)
 	Write-Output "aktoerrestservice/gruppe: " $totalTime | Tee-Object -Append log.txt
@@ -33,17 +33,17 @@ foreach ($file in $personDataFiles) {
 	Write-Output $file.Name | Tee-Object -Append log.txt
 	
 	$StartTime = $(get-date)
-	Invoke-WebRequest -UseBasicParsing https://nginx-broker.skolelogin.127.0.0.1.nip.io/auth/realms/broker/aktoer-service/aktoer -ContentType "application/json" -Method POST -Body $personData
+	Invoke-WebRequest -UseBasicParsing https://nginx-broker.skolelogin.127.0.0.1.nip.io/auth/realms/broker/aktoer-service/aktoer -ContentType "application/json;charset=UTF-8" -Method POST -Body $personData
 	$elapsedTime = $(get-date) - $StartTime
 	$totalTime = "{0:HH:mm:ss.fff}" -f ([datetime]$elapsedTime.Ticks)
 	Write-Output "aktoer-service/aktoer: " $totalTime | Tee-Object -Append log.txt
-
+	
 	$StartTime = $(get-date)
-	Invoke-WebRequest -UseBasicParsing https://nginx-unilogin.skolelogin.127.0.0.1.nip.io/auth/realms/idp/aktoerrestservice/aktoer -ContentType "application/json" -Method POST -Body $personData
+	Invoke-WebRequest -UseBasicParsing https://nginx-unilogin.skolelogin.127.0.0.1.nip.io/auth/realms/idp/aktoerrestservice/aktoer -ContentType "application/json;charset=UTF-8" -Method POST -Body $personData
 	$elapsedTime = $(get-date) - $StartTime
 	$totalTime = "{0:HH:mm:ss.fff}" -f ([datetime]$elapsedTime.Ticks)
 	Write-Output "aktoerrestservice/aktoer: " $totalTime | Tee-Object -Append log.txt
-	
+		
 	Write-Output "" | Tee-Object -Append log.txt
 }
 
